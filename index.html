@@ -16,12 +16,19 @@
         }
 
         :root {
-            --primary-orange: #c27c15;
-            --primary-orange-rgb: 194, 124, 21;
-            --dark-bg: #0a0a0a;
-            --light-text: #f0f0f0;
-            --gray-text: #888;
-            --accent-orange: #e69500
+            /* new palette inspired by the provided image (cyan + purple) */
+            --primary-orange: #33D7FF;
+            /* cyan / teal primary */
+            --primary-orange-rgb: 51, 215, 255;
+            /* rgb for shadows/glows */
+            --dark-bg: #060714;
+            /* deep, near-black navy */
+            --light-text: #EAFCFF;
+            /* very light cyan-tinted text */
+            --gray-text: #89C7D1;
+            /* muted cyan/teal gray */
+            --accent-orange: #9B59FF
+                /* vibrant purple accent */
         }
 
         body {
@@ -963,7 +970,7 @@
             <p class="tagline">ACCESSING TUTORING HUB...</p>
             <div class="terminal-prompt">
                 <p class="prompt-line">> SYSTEM BOOTING...</p>
-                <p class="prompt-line">> WELCOME TO NOAH'S TUTORING HUB.</p>
+                <p class="prompt-line">> WELCOME TO AMAZING TUTORING HUB.</p>
                 <p class="prompt-line">> CONNECTING... <span class="glow"
                         style="color: var(--primary-orange);">SUCCESS</span>
                 </p>
@@ -988,9 +995,10 @@
                     <img src="images/16.svg" alt="Polytrack" class="lesson-image">
                     <h3 class="lesson-title">Polytrack</h3>
                     <p class="lesson-desc">Polytrack</p>
-                    <span class="launch-command">[LAUNCH: Polytrack]</span>
+                    <span class="launch-command">[LAUNCH: POLYTRACK]</span>
                 </div>
-                <div class="lesson-card" onclick="openLesson('Retrobowl', 'https://cdn.at-fam.xyz/Retrobowl/index.html')">
+                <div class="lesson-card"
+                    onclick="openLesson('Retrobowl', 'https://cdn.at-fam.xyz/Retrobowl/index.html')">
                     <img src="images/17.jpg" alt="Retrobowl" class="lesson-image">
                     <h3 class="lesson-title">Retrobowl</h3>
                     <p class="lesson-desc">Retrobowl</p>
@@ -1009,30 +1017,93 @@
             </div>
             <div id="searchStats" class="search-stats"></div>
             <div class="lessons-grid" id="allLessonsGrid">
-                <div class="lesson-card" onclick="openLesson('Noahs Tutoring Hub', 'games/Bendy/index.html')">
-                    <img src="games/Bendy/favicon.png" alt="Noahs Tutoring Hub" class="lesson-image">
-                    <h3 class="lesson-title">Peggle</h3>
-                    <p class="lesson-desc">Addictive physics puzzle game where you shoot balls to clear orange pegs with
-                        satisfying challenges</p>
-                    <span class="launch-command">[LAUNCH: PEGGLE]</span>
+                <div class="lesson-card" onclick="openLesson('Tutoring Hub', 'games/3.html')">
+                    <img src="images/3.png" alt="Tutoring Hub" class="lesson-image">
+                    <h3 class="lesson-title">Bendy</h3>
+                    <p class="lesson-desc">Bendy</p>
+                    <span class="launch-command">[LAUNCH: Bendy]</span>
                 </div>
-                <div class="lesson-card" onclick="openLesson('Noahs Tutoring Hub', 'games/FNaF/index.html')">
-                    <img src="games/FNaF/favicon.ico" alt="Noahs Tutoring Hub" class="lesson-image">
-                    <h3 class="lesson-title">Ace Attorny</h3>
-                    <p class="lesson-desc">Courtroom drama adventure where you investigate crimes and defend clients
-                        with evidence and logic</p>
-                    <span class="launch-command">[LAUNCH: ACE_ATTORNY]</span>
+                <div class="lesson-card" onclick="openLesson('Tutoring Hub', 'games/4.html')">
+                    <img src="images/20.png" alt="Tutoring Hub" class="lesson-image">
+                    <h3 class="lesson-title">Buckshot Roulette</h3>
+                    <p class="lesson-desc">Buckshot Roulette</p>
+                    <span class="launch-command">[LAUNCH: Buckshot Roulette]</span>
                 </div>
-                <div class="lesson-card" onclick="openLesson('Noahs Tutoring Hub', 'games/Buckshot/index.html')">
-                    <img src="games/Buckshot/index.icon.png" alt="Noahs Tutoring Hub" class="lesson-image">
-                    <h3 class="lesson-title">Ace Attorny</h3>
-                    <p class="lesson-desc">Courtroom drama adventure where you investigate crimes and defend clients
-                        with evidence and logic</p>
-                    <span class="launch-command">[LAUNCH: ACE_ATTORNY]</span>
+                <div class="lesson-card" onclick="openLesson('Tutoring Hub', 'games/5.html')">
+                    <img src="images/4.ico" alt="Tutoring Hub" class="lesson-image">
+                    <h3 class="lesson-title">FFPS</h3>
+                    <p class="lesson-desc">FFPS</p>
+                    <span class="launch-command">[LAUNCH: FFPS]</span>
+                </div>
+                <div class="lesson-card" onclick="openLesson('Tutoring Hub', 'games/6.html')">
+                    <img src="images/6.png" alt="Tutoring Hub" class="lesson-image">
+                    <h3 class="lesson-title">FlappyRace</h3>
+                    <p class="lesson-desc">FlappyRace</p>
+                    <span class="launch-command">[LAUNCH: FlappyRace]</span>
+                </div>
+                <div class="lesson-card" onclick="openLesson('Tutoring Hub', 'games/7.html')">
+                    <img src="images/7.ico" alt="Tutoring Hub" class="lesson-image">
+                    <h3 class="lesson-title">FNaF</h3>
+                    <p class="lesson-desc">FNaF</p>
+                    <span class="launch-command">[LAUNCH: FNaF]</span>
+                </div>
+                <div class="lesson-card" onclick="openLesson('Tutoring Hub', 'games/8.html')">
+                    <img src="images/8.ico" alt="Tutoring Hub" class="lesson-image">
+                    <h3 class="lesson-title">FNaF2</h3>
+                    <p class="lesson-desc">FNaF2</p>
+                    <span class="launch-command">[LAUNCH: FNaF2]</span>
+                </div>
+                <div class="lesson-card" onclick="openLesson('Tutoring Hub', 'games/9.html')">
+                    <img src="images/9.ico" alt="Tutoring Hub" class="lesson-image">
+                    <h3 class="lesson-title">FNaF3</h3>
+                    <p class="lesson-desc">FNaF3</p>
+                    <span class="launch-command">[LAUNCH: FNaF3]</span>
+                </div>
+                <div class="lesson-card" onclick="openLesson('Tutoring Hub', 'games/10.html')">
+                    <img src="images/10.ico" alt="Tutoring Hub" class="lesson-image">
+                    <h3 class="lesson-title">FNaF4</h3>
+                    <p class="lesson-desc">FNaF4</p>
+                    <span class="launch-command">[LAUNCH: FNaF4]</span>
+                </div>
+                <div class="lesson-card" onclick="openLesson('Tutoring Hub', 'games/11.html')">
+                    <img src="images/11.ico" alt="Tutoring Hub" class="lesson-image">
+                    <h3 class="lesson-title">FNaFSL</h3>
+                    <p class="lesson-desc">FNaFSL</p>
+                    <span class="launch-command">[LAUNCH: FNaFSL]</span>
+                </div>
+                <div class="lesson-card" onclick="openLesson('Tutoring Hub', 'games/12.html')">
+                    <img src="images/12.ico" alt="Tutoring Hub" class="lesson-image">
+                    <h3 class="lesson-title">FNaFUCN</h3>
+                    <p class="lesson-desc">FNaFUCN</p>
+                    <span class="launch-command">[LAUNCH: FNaFUCN]</span>
+                </div>
+                <div class="lesson-card" onclick="openLesson('Tutoring Hub', 'games/13.html')">
+                    <img src="images/13.ico" alt="Tutoring Hub" class="lesson-image">
+                    <h3 class="lesson-title">FNaFW</h3>
+                    <p class="lesson-desc">FNaFW</p>
+                    <span class="launch-command">[LAUNCH: FNaFW]</span>
+                </div>
+                <div class="lesson-card" onclick="openLesson('Tutoring Hub', 'games/14.html')">
+                    <img src="images/14.png" alt="Tutoring Hub" class="lesson-image">
+                    <h3 class="lesson-title">FnF</h3>
+                    <p class="lesson-desc">FnF</p>
+                    <span class="launch-command">[LAUNCH: FnF]</span>
+                </div>
+                <div class="lesson-card" onclick="openLesson('Tutoring Hub', 'games/15.html')">
+                    <img src="images/15.png" alt="Tutoring Hub" class="lesson-image">
+                    <h3 class="lesson-title">Karlson</h3>
+                    <p class="lesson-desc">Karlson</p>
+                    <span class="launch-command">[LAUNCH: Karlson]</span>
+                </div>
+                <div class="lesson-card" onclick="openLesson('Tutoring Hub', 'games/17.html')">
+                    <img src="images/21.png" alt="Tutoring Hub" class="lesson-image">
+                    <h3 class="lesson-title">DELTARUNE</h3>
+                    <p class="lesson-desc">DELTARUNE</p>
+                    <span class="launch-command">[LAUNCH: DELTARUNE]</span>
                 </div>
         </section>
         <footer>
-            <p>© 2025 Noah's Tutoring Hub. All rights reserved.</p>
+            <p>© 2025 Amazing Tutoring Hub. All rights reserved.</p>
             <p>Educational purposes only.</p>
         </footer>
     </div>
@@ -1042,9 +1113,6 @@
             <div class="game-controls">
                 <button class="btn" onclick="toggleFullscreen()">
                     <i class="fas fa-expand"></i> Fullscreen
-                </button>
-                <button class="btn" onclick="downloadCurrentGame()">
-                    <i class="fas fa-download"></i> Download
                 </button>
                 <button class="btn" onclick="closeLesson()">
                     <i class="fas fa-times"></i> Exit

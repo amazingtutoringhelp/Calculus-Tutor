@@ -15,7 +15,7 @@ for (let x = 0; x < columns; x++) {
 function drawMatrix() {
     ctx.fillStyle = 'rgba(10, 10, 10, 0.04)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = window.matrixColor || '#c27c15';
+    ctx.fillStyle = window.matrixColor || '#33D7FF';
     ctx.font = fontSize + 'px monospace';
     for (let i = 0; i < drops.length; i++) {
         const text = charArray[Math.floor(Math.random() * charArray.length)];

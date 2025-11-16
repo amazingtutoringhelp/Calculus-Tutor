@@ -1,123 +1,79 @@
-
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="pragma" content="no-cache"/>
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name ="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta charset="utf-8"/>
-        <base href="https://cdn.jsdelivr.net/gh/Game-Idiots/game-cdn/Retrobowl/">
-        <title>Educational Games Research</title>
+<head>
+  <base href="https://cdn.jsdelivr.net/gh/genizy/web-port@95f0bb11cfab0f7ee21f32ef36816f659dff75e4/deltarune/">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DELTARUNE</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="fav.ico" />
 
-        <style>
-            body {
-              background: black;
-              color:#000000;
-              margin: 0px;
-              padding: 0px;
-              border: 0px;
-            }
-            canvas {
-                      image-rendering: optimizeSpeed;
-                      -webkit-interpolation-mode: nearest-neighbor;
-                      -ms-touch-action: none;
-                      margin: 0px;
-                      padding: 0px;
-                      border: 0px;
-            }
-            :-webkit-full-screen #canvas {
-                 width: 100%;
-                 height: 100%;
-            }
-            div.gm4html5_div_class
-            {
-              margin: 0px;
-              padding: 0px;
-              border: 0px;
-            }
-            /* START - Login Dialog Box */
-            div.gm4html5_login
-            {
-                 padding: 20px;
-                 position: absolute;
-                 border: solid 2px #000000;
-                 background-color: #404040;
-                 color:#00ff00;
-                 border-radius: 15px;
-                 box-shadow: #101010 20px 20px 40px;
-            }
-            div.gm4html5_cancel_button
-            {
-                 float: right;
-            }
-            div.gm4html5_login_button
-            {
-                 float: left;
-            }
-            div.gm4html5_login_header
-            {
-                 text-align: center;
-            }
-            /* END - Login Dialog Box */
-            :-webkit-full-screen {
-               width: 100%;
-               height: 100%;
-            }
-        </style>
-    </head>
-
-    <body>
-        <div class="gm4html5_div_class" id="gm4html5_div_id">
-        <img src="html5game/splash.png" id="GM4HTML5_loadingscreen" alt="GameMaker:HTML5 loading screen" style="display:none;"/>
-            <canvas id="canvas" width="853" height="480">
-                     <p>Your browser doesn't support HTML5 canvas.</p>
-            </canvas>
-        </div>
-
-
-        <script type="text/javascript" src="html5game/RetroBowl.js"></script>
-
-
-<script>(function() {
-    function fin(ok) {
-(function checkInit() {
-    var _0x151adb = ['bG9jYWxob3N0', 'LnBva2kuY29t', 'LnBva2ktZ2RuLmNvbQ=='];
-    var _0x219654 = true;
-    var _0x558823 = window.location.hostname;
-    for (var _0x220888 = 0x0; _0x220888 < _0x151adb.length; _0x220888++) {
-        var _0x4a2f49 = atob(_0x151adb[_0x220888]);
-        if (_0x558823.indexOf(_0x4a2f49, _0x558823.length - _0x4a2f49.length) !== -0x1) {
-            _0x219654 = true;
-            break;
-        }
+  <link href="https://fonts.cdnfonts.com/css/determination-mono" rel="stylesheet" />
+  <style>
+    a:visited {
+      color: yellow;
     }
-    if (!_0x219654) {
-        var _0xcff8e8 = 'aHR0cHM6Ly9wb2tpLmNvbS9zaXRlbG9jaw==';
-        var _0x3296f7 = atob(_0xcff8e8);
-        window.location.href = _0x3296f7;
-        this.top.location !== this.location && (this.top.location = this.location);
+    a:hover {
+      color: rgba(255, 255, 0, 0.75);
     }
-}());
-        window.PokiSDK_OK = ok;
-        GameMaker_Init();
+    a:active {
+      color: yellow;
     }
-    window.addEventListener("load", function(_) {
-        window.PokiSDK_loadState = 0;
-        if (window.PokiSDK) {
-            PokiSDK.init().then(function() {
-            fin(true);
-        }).catch(function() {
-            fin(false);
-        });
-        } else {
-            window.PokiSDK = null;
-            fin(false);
-        }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="deltarune_logo.png" alt="DELTARUNE Logo" class="logo" />
+    <p class="desc">Choose your chapter.</p>
+
+    <div class="button-group">
+      <button class="button" id="toggleChaptersBtn">Chapters</button>
+      <div id="chapterButtons" class="chapter-buttons hidden">
+        <button onclick="loadChapter(1)" class="button">Chapter 1</button>
+        <button onclick="loadChapter(2)" class="button">Chapter 2</button>
+        <button onclick="loadChapter(3)" class="button">Chapter 3</button>
+        <button onclick="loadChapter(4)" class="button">Chapter 4</button>
+      </div>
+    </div>
+
+    <div id="gameFrame" class="game-frame hidden"></div>
+
+    <footer>
+      <br><br>
+      <a href="https://truffled.lol">website made by aukak/bog</a>
+      <br><br>
+      <a>port made by .shortpie. and breadbb</a>
+    </footer>
+  <script>
+    const toggleBtn = document.getElementById('toggleChaptersBtn');
+    const chapterButtons = document.getElementById('chapterButtons');
+
+    toggleBtn.addEventListener('click', () => {
+      chapterButtons.classList.toggle('show');
+      chapterButtons.classList.toggle('hidden');
     });
-    })();
-</script>
 
-    </body>
+    function loadChapter(chapter) {
+      fetch(`chapter${chapter}/index.html`).then(res => res.text()).then(html => {
+        document.documentElement.innerHTML = html;
+        document.documentElement.querySelectorAll('script').forEach(oldScript => {
+          const newScript = document.createElement('script');
+          if (oldScript.src) {
+            newScript.src = oldScript.src;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
+          document.body.appendChild(newScript);
+        });
+      });
+    }
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-WLTG1S4STB');
+  </script>
+</body>
 </html>
