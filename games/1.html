@@ -1,129 +1,34 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en">
 
 <head>
-    <base href="https://cdn.jsdelivr.net/gh/Game-Idiots/game-cdn/Baldi/">
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Educational Games Research</title>
-    <style>
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            border: 0;
-            height: 100%;
-            width: 100%;
-            overflow: hidden;
-            background: #231F20;
-        }
-
-        #unity-canvas {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-    </style>
+	<base href="https://cdn.jsdelivr.net/gh/genizy/fnaf@f9b32ba6486504f1f6a2117c3201590fcbb132c5/ps/">
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="HandheldFriendly" content="true" />
+    <title>Five Nights at Freddy's Pizzeria Simulator</title>
 </head>
 
 <body>
-    <div id="loading-text" style="color: white; font-size: 48px; font-family: cursive; text-align: center; margin-top: 20px;"> LOADING... </div>
-    <canvas id="unity-canvas" tabindex="-1"></canvas>
-    <script src="Build/WebGL.loader.js"></script>
-    <script>
-        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-            var meta = document.createElement('meta');
-            meta.name = 'viewport';
-            meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
-            document.getElementsByTagName('head')[0].appendChild(meta);
-        }
-        const loadingText = document.querySelector("#loading-text");
-        let totalBytes = 0;
-        let loadedBytes = 0;
-
-        function formatSize(bytes) {
-            if (bytes > 1024 * 1024 * 1024) {
-                return (bytes / (1024 * 1024 * 1024)).toFixed(2) + " GB";
-            } else if (bytes > 1024 * 1024) {
-                return (bytes / (1024 * 1024)).toFixed(2) + " MB";
-            } else if (bytes > 1024) {
-                return (bytes / 1024).toFixed(2) + " KB";
-            } else {
-                return bytes + " B";
-            }
-        }
-        async function getSize(url) {
-            try {
-                const res = await fetch(url, {
-                    method: "HEAD"
-                });
-                return parseInt(res.headers.get("Content-Length") || "0", 10);
-            } catch {
-                return 0;
-            }
-        }
-        async function fetchWithProgress(url) {
-            const response = await fetch(url);
-            const reader = response.body.getReader();
-            let chunks = [];
-            let received = 0;
-            while (true) {
-                const {
-                    done,
-                    value
-                } = await reader.read();
-                if (done) break;
-                received += value.length;
-                loadedBytes += value.length;
-                chunks.push(value);
-                const doneText = formatSize(loadedBytes);
-                const totalText = formatSize(totalBytes);
-                const percent = totalBytes > 0 ? ((loadedBytes / totalBytes) * 100).toFixed(1) : "?";
-                loadingText.textContent = `LOADING... ${doneText} / ${totalText} (${percent}%)`;
-            }
-            let fullBuffer = new Uint8Array(received);
-            let offset = 0;
-            for (let chunk of chunks) {
-                fullBuffer.set(chunk, offset);
-                offset += chunk.length;
-            }
-            return fullBuffer.buffer;
-        }
-        async function mergeFiles(parts) {
-            const buffers = await Promise.all(parts.map(fetchWithProgress));
-            return URL.createObjectURL(new Blob(buffers));
-        }
-
-        function getParts(file, count) {
-            let parts = [];
-            for (let i = 1; i <= count; i++) {
-                parts.push(file + ".part" + i);
-            }
-            return parts;
-        }
-        (async () => {
-            const dataParts = getParts("Build/WebGL.data", 3);
-            const wasmParts = getParts("Build/WebGL.wasm", 3);
-            const allParts = [...dataParts, ...wasmParts];
-            const sizes = await Promise.all(allParts.map(getSize));
-            totalBytes = sizes.reduce((a, b) => a + b, 0);
-            const [dataUrl, wasmUrl] = await Promise.all([
-                mergeFiles(dataParts),
-                mergeFiles(wasmParts)
-            ]);
-            createUnityInstance(document.querySelector("#unity-canvas"), {
-                dataUrl: dataUrl,
-                frameworkUrl: "Build/WebGL.framework.js",
-                codeUrl: wasmUrl,
-                streamingAssetsUrl: "StreamingAssets",
-                companyName: "Basically Games",
-                productName: "Baldi's Basics Classic Remastered",
-                productVersion: "1.1",
-            }).then(() => {
-                loadingText.remove();
-            });
-        })();
-    </script>
+    <div style="display: inline-block; -webkit-user-select: none; text-align: left">
+        <canvas id="MMFCanvas" width="1280" height="720"> Your browser does not support Canvas, Please try again. </canvas>
+    </div>
+    <div id="progress-container">
+        <div style="margin-bottom: 6px;">Downloading... <span id="download-text">0%</span></div>
+        <div style="width: 100%; background: #444; border-radius: 6px; overflow: hidden;">
+            <div id="download-bar" style="height: 10px; background: #3b82f6; width: 0%; transition: width 0.2s;"></div>
+        </div>
+        <div style="margin: 12px 0 6px;">Extracting... <span id="extract-text">0%</span></div>
+        <div style="width: 100%; background: #444; border-radius: 6px; overflow: hidden;">
+            <div id="extract-bar" style="height: 10px; background: #10b981; width: 0%; transition: width 0.2s;"></div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>

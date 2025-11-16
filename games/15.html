@@ -1,123 +1,95 @@
 <!DOCTYPE html>
 <html lang="en-us">
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7FN7LEVWXD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <base href="https://cdn.jsdelivr.net/gh/atfam/game-cdn/Karlson/">
-  <title>Educational Games Research</title>
-  <script src="Build/UnityLoader.js"></script>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      border: 0;
-      overflow: hidden;
-    }
+      gtag('config', 'G-7FN7LEVWXD');
+    </script>
 
-    body {
-      background: #000;
-      position: fixed;
-      width: 100%;
-      height: 100%;
-    }
+    <title>10 Minutes Till Dawn</title>
+    <link rel="shortcut icon" href="../../images/ico.ico" type="image/x-icon">
+    <script src="../../storage/js/cloak.js"></script>
 
-    #unityContainer {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-    }
-  </style>
-  <script src="jszip.min.js"></script>
-  <script>
-document.addEventListener('keydown', function (e) {
-  const key = e.key.toLowerCase();
-
-  // If Ctrl is held, and it's not just plain Ctrl
-  if (e.ctrlKey && key !== 'control') {
-    // Allow Ctrl used for movement (e.g., crouching)
-    // but block browser shortcuts
-    if (['s', 'w', 'd', 'a', 'e', 'q'].includes(key)) {
-      e.preventDefault();
-      e.stopPropagation();
-      console.log(`Blocked browser shortcut Ctrl+${key.toUpperCase()}`);
-    }
-  }
-});
-</script>
-  <script>
-    function resizeUnityContainer() {
-      var container = document.getElementById("unityContainer");
-      container.style.width = window.innerWidth + "px";
-      container.style.height = window.innerHeight + "px";
-    }
-    async function loadZip(url) {
-      const response = await fetch(url);
-      const arrayBuffer = await response.arrayBuffer();
-
-      const jszip = new JSZip();
-      const zip = await jszip.loadAsync(arrayBuffer);
-
-      // look for wasm file inside the zip
-      if (zip.files["tyj.wasm.code.unityweb"]) {
-        const content = await zip.file("tyj.wasm.code.unityweb").async("blob");
-        return URL.createObjectURL(content);
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://cdn.jsdelivr.net/gh/a456pur/seraph@ae2fcc6d6a9cd051654fcc0519080db1f79cf2a7/games/10minutestilldawn/Build/UnityLoader.js"></script>
+    <script>
+      var gameInstance = UnityLoader.instantiate("gameContainer", "https://rawcdn.githack.com/a456pur/seraph/ae2fcc6d6a9cd051654fcc0519080db1f79cf2a7/games/10minutestilldawn/Build/10MinutesTillDawnWebGL.json");
+      var scaleToFit;
+      try {
+        scaleToFit = !!JSON.parse("");
+      } catch (e) {
+        scaleToFit = true;
       }
 
-      throw new Error("tyj.wasm.code.unityweb not found in " + url);
-    }
+      function onResize() {
+        var canvas = gameInstance.Module.canvas;
+        var container = gameInstance.container;
+        var w;
+        var h;
 
-    async function startUnity() {
-      // extract wasm blob URL
-      const wasmurl = await loadZip("Build/tyj.wasm.code.unityweb.zip");
-      window.wasmBinaryFilee = wasmurl;
-      // Unity JSON config
-      const json = {
-        companyName: "Dani",
-        productName: "Karlson",
-        productVersion: "0.1",
-        dataUrl: "tyj.data.unityweb",
-        wasmCodeUrl: wasmurl,
-        wasmFrameworkUrl: "tyj.wasm.framework.js",
-        graphicsAPI: ["WebGL 2.0"],
-        webglContextAttributes: { preserveDrawingBuffer: false },
-        splashScreenStyle: "Dark",
-        backgroundColor: "#231F20",
-        developmentBuild: false,
-        multithreading: false,
-        unityVersion: "2019.2.6f1"
-      };
+        if (scaleToFit) {
+          w = window.innerWidth;
+          h = window.innerHeight;
 
-      let blob = new Blob([JSON.stringify(json)], { type: "application/json" });
-      blobUrl = URL.createObjectURL(blob);
+          var r = 675 / 1200;
 
-      window.addEventListener("resize", resizeUnityContainer);
-      UnityLoader.instantiate("unityContainer", json, {
-        url: blobUrl,
-        Module: {
-          onRuntimeInitialized: function () {
-            resizeUnityContainer();
-            document.querySelector("#loading-text").remove();
+          if (w * r > window.innerHeight) {
+            w = Math.min(w, Math.ceil(h / r));
           }
+          h = Math.floor(w * r);
+        } else {
+          w = 1200;
+          h = 675;
         }
-      });
-    }
 
-    window.addEventListener("load", startUnity);
-  </script>
-</head>
+        container.style.width = canvas.style.width = w + "px";
+        container.style.height = canvas.style.height = h + "px";
+        container.style.top = Math.floor((window.innerHeight - h) / 2) + "px";
+        container.style.left = Math.floor((window.innerWidth - w) / 2) + "px";
+      }
+      window.addEventListener("resize", onResize);
+    </script>
+    <style>
+      html,
+      body {
+        background: #000;
+        background: #000;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+        padding: 0;
+        margin: 0;
+      }
 
-<body>
-  <div id="loading-text" style="
-      color: white;
-      font-size: 48px;
-      font-family: cursive;
-      text-align: center;
-      margin-top: 20px;
-    ">
-    LOADING...
-  </div>
-  <div id="unityContainer" style="width: 960px; height: 600px; margin: auto"></div>
-</body>
+      div#gameContainer {
+        background: transparent !important;
+        position: absolute;
+      }
 
+      div#gameContainer canvas {
+        position: absolute;
+      }
+
+      div#gameContainer[data-pixelated="true"] canvas {
+        image-rendering: optimizeSpeed;
+        image-rendering: -webkit-crisp-edges;
+        image-rendering: -moz-crisp-edges;
+        image-rendering: -o-crisp-edges;
+        image-rendering: crisp-edges;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: optimize-contrast;
+        image-rendering: pixelated;
+        -ms-interpolation-mode: nearest-neighbor;
+      }
+    </style>
+  </head>
+
+  <body onload="onResize();">
+    <div id="gameContainer" data-pixelated="true"></div>
+  </body>
 </html>

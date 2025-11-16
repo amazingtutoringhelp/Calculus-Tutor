@@ -1,334 +1,148 @@
-<!DOCTYPE html>
+
 <html lang="en">
+<base href="https://cdn.jsdelivr.net/gh/bubbls/dosbox/">
+
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 
 <head>
-    <meta charset="UTF-8">
-    <base href="https://cdn.jsdelivr.net/gh/Game-Idiots/game-cdn/FNaF/">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Educational Games Research</title>
-    <link rel="icon" href="favicon.ico" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Fallout</title>
     <style>
-        html {
-            display: block;
-            -webkit-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            overflow: hidden;
-            height: 100%;
-        }
-
+        html,
         body {
-            position: relative;
-            background-color: black;
-            background-image: url(resources/office.png);
-            background-position: center;
-            background-size: cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0;
-            height: 100%;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        .selection {
-            height: auto;
-            min-height: 100vh;
             width: 100%;
-            display: flex;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: black;
+            color: #fedb1d;
             overflow: hidden;
         }
-
-        .launcher-text {
+        
+        #canvas {
             position: absolute;
+            top: 50%;
             left: 50%;
-            transform: translate(-50%, 0);
-            bottom: 2.5vh;
-            z-index: 1;
+            width: auto;
+            height: 100%;
+            background: black;
+            padding: 0;
+            margin: 0;
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
         }
-
-        .vignette {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-        }
-
-        .glitch {
-            position: absolute;
-            background-image: url(resources/background.gif);
-            background-position: center;
-            background-size: 50vw;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            opacity: 0.75;
-            z-index: -1;
-        }
-
-        canvas {
-            display: none;
-            user-select: none;
-        }
-
-        #title {
-            position: absolute;
-            top: 10vh;
-            left: 5vw;
-            z-index: 1;
-            height: 20vh;
-        }
-
-        #animatronic {
-            position: absolute;
-            top: -5vh;
-            right: 7vw;
-            height: 120vh;
-        }
-
-        .loader {
-            position: absolute;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            left: 50%;
-            transform: translate(-50%, 0);
-            bottom: 12vh;
-            z-index: 1;
-            color: white;
-            font-family: monospace;
+        
+        .emularity-splash-screen {
             text-align: center;
-            font-weight: lighter;
-            width: 85vw;
-        }
-
-        .loader h1 {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 50%;
             margin: 0;
-            font-size: 5vw;
+            box-sizing: border-box;
+            color: #000;
         }
-
-        .loader hr{
-            margin: 0;
-            border: white solid 0.1vw;
-            width: 0%;
+        
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-family: monospace;
+            font-size: 20px;
         }
-
-        .loader h2 {
-            margin: 1vh 0;
-            font-size: 1.4vw;
+        
+        #progress {
+            margin-top: 20px;
+            font-size: 16px;
         }
     </style>
 </head>
 
 <body>
-    <canvas id="MMFCanvas" width="1280" height="720"> Your browser does not support Canvas, Please try again.</canvas>
-    <div class="selection" id="selection">
-        <img id="title" src="resources/title.png">
-        <img id="animatronic" src="resources/animatronic.png">
-        <div class="loader">
-            <h1 id="percentage">0%</h1>
-            <hr id="bar">
-            <h2 id="stage">STARTING UP...</h2>
-        </div>
+    <div id="loading">
+        <div>Loading...</div>
+        <div id="progress">Merging archive parts: 0%</div>
     </div>
-    <div class="glitch"></div>
-    <img src="resources/vignette.png" class="vignette">
-    <script src="jszip.min.js"></script>
-</body>
-<!--Made by irv77-->
-<script>
-    const parts = 20;
-    let gametitle, runtimecanvas
-    gametitle = document.title;
-    runtimecanvas = "resources/FNAF1HTML5.cch";
-    // Prevents touchscreen move
-    window.addEventListener("scroll", preventMotion, false);
-    window.addEventListener("touchmove", preventMotion, false);
-    function preventMotion(event) {
-        window.scrollTo(0, 0);
-        event.preventDefault();
-        event.stopPropagation();
-    }
-    // Fullscreen Key
-    const pressedKeys = {};
-    document.addEventListener('keydown', event => {
-        pressedKeys[event.key] = true;
-        if (pressedKeys['-'] && pressedKeys['=']) {
-            document.querySelector('canvas').requestFullscreen();
-            delete pressedKeys[event.key];
-        }
-    });
-    document.addEventListener('keyup', (event) => {
-        delete pressedKeys[event.key];
-    });
-    // -----------------
-    window.onload = function () {
-        const map = new Map();
+    <canvas id="canvas" style="width: 50%; height: 50%; display: none; margin: 0 auto;" onClick="window.focus();" />
+    <script type="text/javascript" src="js/es6-promise.js"></script>
+    <script type="text/javascript" src="js/browserfs.min.js"></script>
+    <script type="text/javascript" src="js/loader.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
-        function updateProgress(text, percent) {
-            document.title = percent + '% ' + gametitle
-            document.getElementById('percentage').innerHTML = percent + '%';
-            document.getElementById('bar').style.width = percent + '%';
-            document.getElementById('stage').innerHTML = text;
-        }
+    <script type="text/javascript">
+        const PARTS_FOLDER = 'softs/fallout/';  
+        const BASE_FILENAME = 'fallout.zip';   
+        const NUM_PARTS = 23;                   
 
-        async function intercept() {
-            const ogfetch = window.fetch;
-            window.fetch = async function (input, init) {
-                if (typeof input === 'string' && input.startsWith('resources/')) {
-                    const fileName = input.split('/').pop();
-                    if (map.has(fileName)) {
-                        return ogfetch(map.get(fileName), init);
+        async function loadAndMergeZipParts() {
+            const progressEl = document.getElementById('progress');
+            const loadingEl = document.getElementById('loading');
+            
+            try {
+                const chunks = [];
+                
+                for (let i = 1; i <= NUM_PARTS; i++) {
+                    progressEl.textContent = `Loading part ${i}/${NUM_PARTS}...`;
+                    
+                    const partNum = i.toString().padStart(2, '0');
+                    const partUrl = `${PARTS_FOLDER}${BASE_FILENAME}.part${partNum}`;
+                    const response = await fetch(partUrl);
+                    
+                    if (!response.ok) {
+                        throw new Error(`Failed to load ${partUrl}: ${response.status}`);
                     }
+                    
+                    const arrayBuffer = await response.arrayBuffer();
+                    chunks.push(arrayBuffer);
+                    
+                    const progress = Math.round((i / NUM_PARTS) * 100);
+                    progressEl.textContent = `Merging archive parts: ${progress}%`;
                 }
-                return ogfetch(input, init);
-            };
-
-            const ogopen = XMLHttpRequest.prototype.open;
-            XMLHttpRequest.prototype.open = function (method, url) {
-                if (url.startsWith('resources/')) {
-                    const fileName = url.split('/').pop();
-                    if (map.has(fileName)) {
-                        url = map.get(fileName);
-                    }
-                }
-                return ogopen.apply(this, arguments);
-            };
-
-            const types = [HTMLImageElement, HTMLAudioElement, HTMLVideoElement];
-            for (const Tag of types) {
-                const descriptor = Object.getOwnPropertyDescriptor(Tag.prototype, 'src');
-                if (descriptor && descriptor.set) {
-                    Object.defineProperty(Tag.prototype, 'src', {
-                        configurable: true,
-                        enumerable: true,
-                        get: descriptor.get,
-                        set: function (val) {
-                            if (typeof val === 'string' && val.startsWith('resources/')) {
-                                const fileName = val.split('/').pop();
-                                if (map.has(fileName)) {
-                                    val = map.get(fileName);
-                                }
-                            }
-                            descriptor.set.call(this, val);
-                        }
-                    });
-                }
+                
+                progressEl.textContent = 'Merging complete! Starting emulator...';
+                const mergedBlob = new Blob(chunks, { type: 'application/zip' });
+                
+                const blobUrl = URL.createObjectURL(mergedBlob);
+                
+                loadingEl.style.display = 'none';
+                document.getElementById('canvas').style.display = 'block';
+                
+                startEmulator(blobUrl);
+                
+            } catch (error) {
+                progressEl.textContent = `Error: ${error.message}`;
+                console.error('Failed to load game:', error);
             }
         }
 
-        async function extract() {
-            const res = await fetch("resources.zip");
-
-            const contentLength = res.headers.get("Content-Length");
-            const total = parseInt(contentLength, 10);
-            const reader = res.body.getReader();
-            let loaded = 0;
-            const chunks = [];
-
-            while (true) {
-                const { done, value } = await reader.read();
-                if (done) break;
-                chunks.push(value);
-                loaded += value.length;
-                updateProgress('RETURNING GEARS...', Math.floor((loaded / total / 2) * 100));
-            }
-
-            const arrayBuffer = await new Blob(chunks).arrayBuffer();
-            const zip = await JSZip.loadAsync(arrayBuffer);
-            const files = Object.keys(zip.files).filter(name => !zip.files[name].dir);
-            const totalFiles = files.length;
-
-            for (let i = 0; i < totalFiles; i++) {
-                const file = zip.files[files[i]];
-                const blob = await file.async("blob");
-                const url = URL.createObjectURL(blob);
-                map.set(files[i], url);
-                updateProgress('BOOTING UP ARCHIVE...', Math.floor(((i + 1) / totalFiles / 2) * 100 + 50));
-            }
-        }
-
-        async function wedone() {
-            await extract();
-            await intercept();
-
-            const script = document.createElement('script');
-            script.src = 'src/Runtime.js';
-            script.onload = () => {
-                new Runtime("MMFCanvas", runtimecanvas);
-            };
-            document.getElementById('MMFCanvas').style.display = 'block';
-            document.getElementById('selection').style.display = 'none';
-            document.title = gametitle;
-            document.head.appendChild(script);
-        }
-
-        const originalFetch = window.fetch;
-
-        function mergeFiles(fileParts) {
-            return new Promise((resolve, reject) => {
-                let buffers = [];
-                let totalSize = 0;
-                let loadedSize = 0;
-                Promise.all(fileParts.map(part =>
-                    fetch(part, { method: 'HEAD' }).then(res => {
-                        try {
-                            if (!res.ok) throw new Error("Missing part: " + part);
-                            return parseInt(res.headers.get("Content-Length") || "0", 10);
-                        } catch (error) { document.getElementById('stage').innerHTML = "ERROR: MISSING FILE(S)..." }
-                    })
-                )).then(sizes => {
-                    totalSize = sizes.reduce((a, b) => a + b, 0);
-                    function fetchPart(index) {
-                        if (index >= fileParts.length) {
-                            let mergedBlob = new Blob(buffers);
-                            let mergedFileUrl = URL.createObjectURL(mergedBlob);
-                            resolve(mergedFileUrl);
-                            return;
-                        }
-
-                        fetch(fileParts[index]).then((response) => {
-                            if (!response.ok) throw new Error("Missing part: " + fileParts[index]);
-                            return response.arrayBuffer();
-                        }).then((data) => {
-                            buffers.push(data);
-                            loadedSize += data.byteLength;
-                            updateProgress('LOCATING ARCHIVE...', Math.floor((loadedSize / totalSize / 2) * 100));
-                            fetchPart(index + 1);
-                        }).catch(reject);
-                    }
-
-                    fetchPart(0);
-                }).catch(reject);
+        function startEmulator(zipUrl) {
+            var dosbox = new Emulator(document.querySelector("#canvas"),
+                null,
+                new DosBoxLoader(DosBoxLoader.emulatorJS("js/dosbox-sync.js"),
+                    DosBoxLoader.locateAdditionalEmulatorJS(locateAdditionalFiles),
+                    DosBoxLoader.nativeResolution(640, 400),
+                    DosBoxLoader.mountZip("c",
+                        DosBoxLoader.fetchFile("Software", zipUrl)),
+                    DosBoxLoader.startExe('FALLOUT/FALLOUT.EXE')));
+            dosbox.start({
+                waitAfterDownloading: false
             });
+
+            function locateAdditionalFiles(filename) {
+                if (filename === "dosbox.html.mem") {
+                    return "js/dosbox-sync.mem";
+                }
+                return "js/" + filename;
+            }
         }
 
-        function getParts(file, start, end) {
-            let parts = [];
-            for (let i = start; i <= end; i++) {
-                parts.push(file + ".part" + i);
-            }
-            return parts;
-        }
-        Promise.all([
-            mergeFiles(getParts("src/resources.zip", 1, parts))
-        ]).then(([resources]) => {
-            window.fetch = async function (url, ...args) {
-                if (url.endsWith("resources.zip")) {
-                    return originalFetch(resources, ...args);
-                } else {
-                    return originalFetch(url, ...args);
-                }
-            };
-            wedone();
-        });
-    };
-</script>
+        window.addEventListener('load', loadAndMergeZipParts);
+    </script>
+</body>
+
 </html>
