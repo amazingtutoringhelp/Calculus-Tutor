@@ -39,6 +39,18 @@ function openLesson(title, url) {
     document.getElementById('main-container').classList.add('slide-down');
 }
 
+function openLessonFromCDN(title, url) {
+    document.getElementById('gameTitle').textContent = title;
+        fetch(url)
+            .then(response => response.text())
+            .then(html => {
+                const iframe = document.getElementById('gameFrame');
+                iframe.srcdoc = html;
+            })
+            .catch(error => console.error('Error loading content:', error));
+    document.getElementById('gamePage').classList.add('active');
+    document.getElementById('main-container').classList.add('slide-down');
+}
 function closeLesson() {
     document.getElementById('main-container').classList.remove('slide-down');
     setTimeout(function () {
@@ -46,84 +58,6 @@ function closeLesson() {
         document.getElementById('gameFrame').src = '';
         document.getElementById('gameFrame').classList.remove('fullscreen');
     }, 500);
-}
-
-async function initiateDownload(gameUrl, gameTitle) {
-    try {
-        const gameMatch = gameUrl.match(/games\/(\d+)\.html/);
-        if (!gameMatch) {
-            throw new Error('Could not extract game number from URL');
-        }
-
-        const gameNumber = gameMatch[1];
-
-        const jsDelivrUrl = `https://cdn.jsdelivr.net/gh/NoahsAmazingTutoringHelp/Noahs-Calculus-Tutor@master/games/${gameNumber}.html`;
-
-        console.log('Downloading from:', jsDelivrUrl);
-
-        const response = await fetch(jsDelivrUrl);
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-
-        let gameContent = await response.text();
-
-        const brandingElement = `
-            <div style="position:fixed;bottom:10px;right:10px;z-index:9999;">
-                <a href="https://noahs-calculus-tutor.pages.dev" target="_blank" 
-                   style="color:white;text-decoration:none;display:flex;align-items:center;gap:8px;font-size:12px;background:rgba(0,0,0,0.8);padding:8px 12px;border-radius:6px;font-family:Arial,sans-serif;">
-                    <span>Downloaded from Noah's Tutoring Hub</span>
-                    <img src="https://cdn.jsdelivr.net/gh/NoahsAmazingTutoringHelp/reimagined-octo-winner@main/pictures/5.png" 
-                         style="height:18px;width:auto;">
-                </a>
-            </div>
-            `;
-
-        if (gameContent.includes('</body>')) {
-            gameContent = gameContent.replace('</body>', brandingElement + '</body>');
-        } else {
-            gameContent += brandingElement;
-        }
-
-        if (gameContent.includes('<title>')) {
-            gameContent = gameContent.replace(
-                /<title>.*?<\/title>/i,
-                `<title>${gameTitle}</title>`
-            );
-        }
-
-        const fileBlob = new Blob([gameContent], { type: 'text/html' });
-        const fileUrl = URL.createObjectURL(fileBlob);
-        const downloadLink = document.createElement('a');
-        downloadLink.href = fileUrl;
-        downloadLink.download = `${gameTitle.replace(/[^a-z0-9]/gi, '_')}.html`;
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-        document.body.removeChild(downloadLink);
-        URL.revokeObjectURL(fileUrl);
-
-
-
-    } catch (error) {
-        console.error('Download error:', error);
-
-        alert('Unable to download game. Please try again later.');
-    }
-}
-function downloadCurrentGame() {
-    const gameFrame = document.getElementById('gameFrame');
-    const gameUrl = gameFrame.src;
-    const gameTitle = document.getElementById('gameTitle').textContent;
-
-    console.log('Download attempted for:', gameUrl, 'Title:', gameTitle);
-
-    if (gameUrl && gameUrl.includes('games/') && gameUrl.includes('.html')) {
-
-        initiateDownload(gameUrl, gameTitle);
-    } else {
-
-        alert('Sorry, this game is not downloadable. Try another one.');
-    }
 }
 
 function toggleFullscreen() {
