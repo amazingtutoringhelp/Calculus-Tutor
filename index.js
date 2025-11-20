@@ -56,6 +56,7 @@ function closeLesson() {
     setTimeout(function () {
         document.getElementById('gamePage').classList.remove('active', 'slide-down');
         document.getElementById('gameFrame').src = '';
+        document.getElementById('gameFrame').srcdoc = '';
         document.getElementById('gameFrame').classList.remove('fullscreen');
     }, 500);
 }
