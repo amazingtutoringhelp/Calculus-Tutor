@@ -33,40 +33,40 @@ window.addEventListener('resize', function () {
 });
 
 function openLesson(title, url) {
-    document.getElementById('gameTitle').textContent = title;
-    document.getElementById('gameFrame').src = url;
-    document.getElementById('gamePage').classList.add('active');
+    document.getElementById('lessonTitle').textContent = title;
+    document.getElementById('lessonFrame').src = url;
+    document.getElementById('lessonPage').classList.add('active');
     document.getElementById('main-container').classList.add('slide-down');
 }
 
 function openLessonFromCDN(title, url) {
-    document.getElementById('gameTitle').textContent = title;
+    document.getElementById('lessonTitle').textContent = title;
         fetch(url)
             .then(response => response.text())
             .then(html => {
-                const iframe = document.getElementById('gameFrame');
+                const iframe = document.getElementById('lessonFrame');
                 iframe.srcdoc = html;
             })
             .catch(error => console.error('Error loading content:', error));
-    document.getElementById('gamePage').classList.add('active');
+    document.getElementById('lessonPage').classList.add('active');
     document.getElementById('main-container').classList.add('slide-down');
 }
 function closeLesson() {
     document.getElementById('main-container').classList.remove('slide-down');
     setTimeout(function () {
-        document.getElementById('gamePage').classList.remove('active', 'slide-down');
-        document.getElementById('gameFrame').src = '';
-        document.getElementById('gameFrame').srcdoc = '';
-        document.getElementById('gameFrame').classList.remove('fullscreen');
+        document.getElementById('lessonPage').classList.remove('active', 'slide-down');
+        document.getElementById('lessonFrame').src = '';
+        document.getElementById('lessonFrame').srcdoc = '';
+        document.getElementById('lessonFrame').classList.remove('fullscreen');
     }, 500);
 }
 
 function toggleFullscreen() {
-    const gameFrame = document.getElementById('gameFrame');
-    const isEnteringFullscreen = !gameFrame.classList.contains('fullscreen');
+    const lessonFrame = document.getElementById('lessonFrame');
+    const isEnteringFullscreen = !lessonFrame.classList.contains('fullscreen');
 
 
-    document.getElementById('gameTitle').textContent
+    document.getElementById('lessonTitle').textContent
 
     if (document.fullscreenElement || document.webkitFullscreenElement ||
         document.msFullscreenElement || document.mozFullScreenElement) {
@@ -80,14 +80,14 @@ function toggleFullscreen() {
             document.mozCancelFullScreen();
         }
     } else {
-        if (gameFrame.requestFullscreen) {
-            gameFrame.requestFullscreen();
-        } else if (gameFrame.webkitRequestFullscreen) {
-            gameFrame.webkitRequestFullscreen();
-        } else if (gameFrame.msRequestFullscreen) {
-            gameFrame.msRequestFullscreen();
-        } else if (gameFrame.mozRequestFullScreen) {
-            gameFrame.mozRequestFullScreen();
+        if (lessonFrame.requestFullscreen) {
+            lessonFrame.requestFullscreen();
+        } else if (lessonFrame.webkitRequestFullscreen) {
+            lessonFrame.webkitRequestFullscreen();
+        } else if (lessonFrame.msRequestFullscreen) {
+            lessonFrame.msRequestFullscreen();
+        } else if (lessonFrame.mozRequestFullScreen) {
+            lessonFrame.mozRequestFullScreen();
         }
     }
 }
@@ -197,21 +197,21 @@ document.addEventListener('mozfullscreenchange', handleFullscreenChange);
 document.addEventListener('MSFullscreenChange', handleFullscreenChange);
 
 function handleFullscreenChange() {
-    const gameFrame = document.getElementById('gameFrame');
+    const lessonFrame = document.getElementById('lessonFrame');
     const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement ||
         document.msFullscreenElement || document.mozFullScreenElement;
 
     if (isFullscreen) {
-        gameFrame.classList.add('fullscreen');
+        lessonFrame.classList.add('fullscreen');
     } else {
-        gameFrame.classList.remove('fullscreen');
+        lessonFrame.classList.remove('fullscreen');
     }
 }
 
 document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
-        const gameFrame = document.getElementById('gameFrame');
-        if (gameFrame.classList.contains('fullscreen')) {
+        const lessonFrame = document.getElementById('lessonFrame');
+        if (lessonFrame.classList.contains('fullscreen')) {
             toggleFullscreen();
         }
     }

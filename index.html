@@ -270,7 +270,7 @@
             text-shadow: 0 0 5px currentColor
         }
 
-        .game-page {
+        .lesson-page {
             position: fixed;
             top: 0;
             left: 0;
@@ -283,16 +283,16 @@
             transition: transform .5s ease-in-out
         }
 
-        .game-page.active {
+        .lesson-page.active {
             transform: translateY(0);
             display: block
         }
 
-        .game-page.slide-down {
+        .lesson-page.slide-down {
             transform: translateY(100%)
         }
 
-        .game-header {
+        .lesson-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -301,13 +301,13 @@
             border-bottom: 1px solid var(--primary-orange)
         }
 
-        .game-title {
+        .lesson-title {
             color: var(--primary-orange);
             font-size: 1.5rem;
             text-shadow: 0 0 5px rgba(var(--primary-orange-rgb), .5)
         }
 
-        .game-controls {
+        .lesson-controls {
             display: flex;
             gap: 15px
         }
@@ -328,20 +328,20 @@
             box-shadow: 0 0 10px var(--primary-orange)
         }
 
-        .game-container {
+        .lesson-container {
             height: calc(100vh - 70px);
             display: flex;
             flex-direction: column
         }
 
-        .game-frame {
+        .lesson-frame {
             flex: 1;
             width: 100%;
             border: none;
             background-color: rgba(30, 30, 30, .7)
         }
 
-        .game-frame.fullscreen {
+        .lesson-frame.fullscreen {
             position: fixed;
             top: 0;
             left: 0;
@@ -350,7 +350,7 @@
             z-index: 9999;
         }
 
-        .game-frame.fullscreen~.game-header {
+        .lesson-frame.fullscreen~.lesson-header {
             display: none;
         }
 
@@ -711,8 +711,8 @@
         .theme-rainbow section,
         .theme-rainbow .lesson-card,
         .theme-rainbow .search-box,
-        .theme-rainbow .game-header,
-        .theme-rainbow .game-frame,
+        .theme-rainbow .lesson-header,
+        .theme-rainbow .lesson-frame,
         .theme-rainbow .comments-section,
         .theme-rainbow .partner-card {
             border-color: var(--primary-orange) !important;
@@ -755,8 +755,8 @@
         .theme-cyber-green section,
         .theme-cyber-green .lesson-card,
         .theme-cyber-green .search-box,
-        .theme-cyber-green .game-header,
-        .theme-cyber-green .game-frame,
+        .theme-cyber-green .lesson-header,
+        .theme-cyber-green .lesson-frame,
         .theme-cyber-green .comments-section,
         .theme-cyber-green .partner-card {
             border-color: var(--primary-orange) !important;
@@ -799,8 +799,8 @@
         .theme-ice-blue section,
         .theme-ice-blue .lesson-card,
         .theme-ice-blue .search-box,
-        .theme-ice-blue .game-header,
-        .theme-ice-blue .game-frame,
+        .theme-ice-blue .lesson-header,
+        .theme-ice-blue .lesson-frame,
         .theme-ice-blue .comments-section,
         .theme-ice-blue .partner-card {
             border-color: var(--primary-orange) !important;
@@ -843,8 +843,8 @@
         .theme-solarized section,
         .theme-solarized .lesson-card,
         .theme-solarized .search-box,
-        .theme-solarized .game-header,
-        .theme-solarized .game-frame,
+        .theme-solarized .lesson-header,
+        .theme-solarized .lesson-frame,
         .theme-solarized .comments-section,
         .theme-solarized .partner-card {
             border-color: var(--primary-orange) !important;
@@ -887,8 +887,8 @@
         .theme-purple-haze section,
         .theme-purple-haze .lesson-card,
         .theme-purple-haze .search-box,
-        .theme-purple-haze .game-header,
-        .theme-purple-haze .game-frame,
+        .theme-purple-haze .lesson-header,
+        .theme-purple-haze .lesson-frame,
         .theme-purple-haze .comments-section,
         .theme-purple-haze .partner-card {
             border-color: var(--primary-orange) !important;
@@ -929,7 +929,7 @@
                 padding: 10px
             }
 
-            .game-controls {
+            .lesson-controls {
                 flex-direction: column;
                 gap: 10px
             }
@@ -986,7 +986,7 @@
             <h2>POPULAR</h2>
             <div class="lessons-grid">
                 <div class="lesson-card"
-                    onclick="openLesson('Baldis Basics', 'https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@tree/main/lesson/43.html')">
+                    onclick="openLessonFromCDN('Baldis Basics', 'https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/lesson/43.html')">
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/52.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Baldis Basics</h3>
@@ -997,7 +997,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/139.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Poly Track</h3>
-                    <p class="lesson-desc">Geometric racing game</p>
+                    <p class="lesson-desc">Geometric racing lesson</p>
                     <span class="launch-command">[LAUNCH: POLY_TRACK]</span>
                 </div>
                 <div class="lesson-card"
@@ -1005,7 +1005,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/158.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Retro Bowl</h3>
-                    <p class="lesson-desc">Football management game</p>
+                    <p class="lesson-desc">Football management lesson</p>
                     <span class="launch-command">[LAUNCH: RETRO_BOWL]</span>
                 </div>
             </div>
@@ -1027,7 +1027,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/251.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Peggle</h3>
-                    <p class="lesson-desc">Addictive physics puzzle game where you shoot balls to clear orange pegs with
+                    <p class="lesson-desc">Addictive physics puzzle lesson where you shoot balls to clear orange pegs with
                         satisfying challenges</p>
                     <span class="launch-command">[LAUNCH: PEGGLE]</span>
                 </div>
@@ -1085,7 +1085,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/245.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">FNF Impostor V4</h3>
-                    <p class="lesson-desc">Among Us themed FNF mod with sus rhythms and impostor gameplay</p>
+                    <p class="lesson-desc">Among Us themed FNF mod with sus rhythms and impostor lessonplay</p>
                     <span class="launch-command">[LAUNCH: FNF_IMPOSTOR_V4]</span>
                 </div>
 
@@ -1169,7 +1169,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/236.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Achillies 2</h3>
-                    <p class="lesson-desc">Sequel to the action-packed Achillies game with enhanced combat and story</p>
+                    <p class="lesson-desc">Sequel to the action-packed Achillies lesson with enhanced combat and story</p>
                     <span class="launch-command">[LAUNCH: ACHILLIES_2]</span>
                 </div>
 
@@ -1197,7 +1197,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/233.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Learn to Fly 3</h3>
-                    <p class="lesson-desc">Physics-based game where you help a penguin achieve flight through various
+                    <p class="lesson-desc">Physics-based lesson where you help a penguin achieve flight through various
                         methods</p>
                     <span class="launch-command">[LAUNCH: LEARN_TO_FLY_3]</span>
                 </div>
@@ -1226,7 +1226,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/230.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Madness Interactive</h3>
-                    <p class="lesson-desc">Fast-paced stick figure combat game with intense action and ragdoll physics
+                    <p class="lesson-desc">Fast-paced stick figure combat lesson with intense action and ragdoll physics
                     </p>
                     <span class="launch-command">[LAUNCH: MADNESS_INTERACTIVE]</span>
                 </div>
@@ -1236,7 +1236,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/229.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Tony Hawks Pro Skater</h3>
-                    <p class="lesson-desc">Classic skateboarding game with trick combos, iconic skaters, and great
+                    <p class="lesson-desc">Classic skateboarding lesson with trick combos, iconic skaters, and great
                         soundtrack</p>
                     <span class="launch-command">[LAUNCH: TONY_HAWKS_PRO_SKATER]</span>
                 </div>
@@ -1246,7 +1246,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/228.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Postal</h3>
-                    <p class="lesson-desc">Controversial top-down shooter known for its dark humor and violent gameplay
+                    <p class="lesson-desc">Controversial top-down shooter known for its dark humor and violent lessonplay
                     </p>
                     <span class="launch-command">[LAUNCH: POSTAL]</span>
                 </div>
@@ -1256,7 +1256,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/227.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Resident Evil 3</h3>
-                    <p class="lesson-desc">Survival horror game featuring Jill Valentine escaping Nemesis in Raccoon
+                    <p class="lesson-desc">Survival horror lesson featuring Jill Valentine escaping Nemesis in Raccoon
                         City</p>
                     <span class="launch-command">[LAUNCH: RESIDENT_EVIL_3]</span>
                 </div>
@@ -1266,7 +1266,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/226.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Scribblenauts</h3>
-                    <p class="lesson-desc">Puzzle game where you solve challenges by summoning objects you write</p>
+                    <p class="lesson-desc">Puzzle lesson where you solve challenges by summoning objects you write</p>
                     <span class="launch-command">[LAUNCH: SCRIBBLENAUTS]</span>
                 </div>
 
@@ -1284,7 +1284,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/224.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Strange Rope Police</h3>
-                    <p class="lesson-desc">Physics-based game with rope mechanics and law enforcement themes</p>
+                    <p class="lesson-desc">Physics-based lesson with rope mechanics and law enforcement themes</p>
                     <span class="launch-command">[LAUNCH: STRANGE_ROPE_POLICE]</span>
                 </div>
 
@@ -1293,7 +1293,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/223.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Street Fighter III</h3>
-                    <p class="lesson-desc">Classic fighting game known for parry system and competitive gameplay</p>
+                    <p class="lesson-desc">Classic fighting lesson known for parry system and competitive lessonplay</p>
                     <span class="launch-command">[LAUNCH: STREET_FIGHTER_III]</span>
                 </div>
 
@@ -1302,7 +1302,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/222.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Super Liquid Soccer</h3>
-                    <p class="lesson-desc">Arcade soccer game with fluid physics and exaggerated gameplay mechanics</p>
+                    <p class="lesson-desc">Arcade soccer lesson with fluid physics and exaggerated lessonplay mechanics</p>
                     <span class="launch-command">[LAUNCH: SUPER_LIQUID_SOCCER]</span>
                 </div>
 
@@ -1311,7 +1311,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/221.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Tempoverdose</h3>
-                    <p class="lesson-desc">Rhythm game with intense tempo-based challenges and electronic music</p>
+                    <p class="lesson-desc">Rhythm lesson with intense tempo-based challenges and electronic music</p>
                     <span class="launch-command">[LAUNCH: TEMPOVERDOSE]</span>
                 </div>
 
@@ -1320,7 +1320,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/220.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Abandoned</h3>
-                    <p class="lesson-desc">Escape room type game where you need to figure out how to get out of each
+                    <p class="lesson-desc">Escape room type lesson where you need to figure out how to get out of each
                     </p>
                     <span class="launch-command">[LAUNCH: ABANDONED]</span>
                 </div>
@@ -1330,7 +1330,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/219.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Wolfenstein 3D</h3>
-                    <p class="lesson-desc">The pioneer FPS game where you battle Nazis as Allied spy B.J. Blazkowicz</p>
+                    <p class="lesson-desc">The pioneer FPS lesson where you battle Nazis as Allied spy B.J. Blazkowicz</p>
                     <span class="launch-command">[LAUNCH: WOLFENSTEIN_3D]</span>
                 </div>
 
@@ -1349,7 +1349,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/fuckthis.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Mortal Kombat 4</h3>
-                    <p class="lesson-desc">Classic fighting game with brutal fatalities and iconic characters in fourth
+                    <p class="lesson-desc">Classic fighting lesson with brutal fatalities and iconic characters in fourth
                         installment</p>
                     <span class="launch-command">[LAUNCH: MORTAL_KOMBAT_4]</span>
                 </div>
@@ -1447,7 +1447,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/209.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Schoolboy Runaway</h3>
-                    <p class="lesson-desc">A somewhat horror game where you control a schoolboy trying to escape his
+                    <p class="lesson-desc">A somewhat horror lesson where you control a schoolboy trying to escape his
                         troubled home life</p>
                     <span class="launch-command">[LAUNCH: SCHOOLBOY_RUNAWAY]</span>
                 </div>
@@ -1457,7 +1457,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/208.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Fears To Fathom: Home Alone</h3>
-                    <p class="lesson-desc">A horror game where you are home alone and must survive a stalker's
+                    <p class="lesson-desc">A horror lesson where you are home alone and must survive a stalker's
                         terrifying visits</p>
                     <span class="launch-command">[LAUNCH: FEARS_TO_FATHOM_HA]</span>
                 </div>
@@ -1477,7 +1477,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/205.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Resident Evil 2</h3>
-                    <p class="lesson-desc">Survival horror game where you fight zombies in a doomed police station</p>
+                    <p class="lesson-desc">Survival horror lesson where you fight zombies in a doomed police station</p>
                     <span class="launch-command">[LAUNCH: RESIDENT_EVIL_2]</span>
                 </div>
 
@@ -1505,7 +1505,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/202.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Donkey Kong</h3>
-                    <p class="lesson-desc">Classic arcade game where Jumpman must rescue his girlfriend from a giant ape
+                    <p class="lesson-desc">Classic arcade lesson where Jumpman must rescue his girlfriend from a giant ape
                     </p>
                     <span class="launch-command">[LAUNCH: DONKEY_KONG]</span>
                 </div>
@@ -1515,7 +1515,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/201.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Apple Worm</h3>
-                    <p class="lesson-desc">A retro arcade game where you guide a worm to eat apples and grow longer</p>
+                    <p class="lesson-desc">A retro arcade lesson where you guide a worm to eat apples and grow longer</p>
                     <span class="launch-command">[LAUNCH: APPLE_WORM]</span>
                 </div>
 
@@ -1524,7 +1524,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/200.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Chess</h3>
-                    <p class="lesson-desc">A classic strategy game where two kings battle to the death</p>
+                    <p class="lesson-desc">A classic strategy lesson where two kings battle to the death</p>
                     <span class="launch-command">[LAUNCH: CHESS]</span>
                 </div>
 
@@ -1633,7 +1633,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/187.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Buckshot Roulette</h3>
-                    <p class="lesson-desc">Russian Roulette type game with a TWIST</p>
+                    <p class="lesson-desc">Russian Roulette type lesson with a TWIST</p>
                     <span class="launch-command">[LAUNCH: BUCKSHOT_ROULETTE]</span>
                 </div>
 
@@ -1669,7 +1669,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/2.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Baseball Bros</h3>
-                    <p class="lesson-desc">Engage in exciting baseball matches with strategic gameplay</p>
+                    <p class="lesson-desc">Engage in exciting baseball matches with strategic lessonplay</p>
                     <span class="launch-command">[LAUNCH: BASEBALL_BROS]</span>
                 </div>
 
@@ -1678,7 +1678,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/3.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">A Dance of Fire and Ice</h3>
-                    <p class="lesson-desc">Rhythm game requiring perfect timing between two spheres</p>
+                    <p class="lesson-desc">Rhythm lesson requiring perfect timing between two spheres</p>
                     <span class="launch-command">[LAUNCH: ADOFAI]</span>
                 </div>
 
@@ -1723,7 +1723,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/8.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Deepest Sword</h3>
-                    <p class="lesson-desc">Adventure game about retrieving the deepest sword</p>
+                    <p class="lesson-desc">Adventure lesson about retrieving the deepest sword</p>
                     <span class="launch-command">[LAUNCH: DEEPEST_SWORD]</span>
                 </div>
 
@@ -1768,7 +1768,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/13.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Street Fighter II</h3>
-                    <p class="lesson-desc">Classic fighting game with special moves</p>
+                    <p class="lesson-desc">Classic fighting lesson with special moves</p>
                     <span class="launch-command">[LAUNCH: STREET_FIGHTER_II]</span>
                 </div>
 
@@ -1786,7 +1786,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/15.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Steal a Brainrot Online</h3>
-                    <p class="lesson-desc">Multiplayer game about strategic theft</p>
+                    <p class="lesson-desc">Multiplayer lesson about strategic theft</p>
                     <span class="launch-command">[LAUNCH: STEAL_A_BRAINROT]</span>
                 </div>
 
@@ -1804,7 +1804,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/18.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Yandere Simulator</h3>
-                    <p class="lesson-desc">Stealth game eliminating rivals</p>
+                    <p class="lesson-desc">Stealth lesson eliminating rivals</p>
                     <span class="launch-command">[LAUNCH: YANDERE_SIM]</span>
                 </div>
 
@@ -1823,7 +1823,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/21.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">10 Minutes Till Dawn</h3>
-                    <p class="lesson-desc">Intense bullet hell survival game</p>
+                    <p class="lesson-desc">Intense bullet hell survival lesson</p>
                     <span class="launch-command">[LAUNCH: 10_MIN_TILL_DAWN]</span>
                 </div>
 
@@ -1877,7 +1877,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/27.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">PaRappa The Rapper</h3>
-                    <p class="lesson-desc">Rhythm-based music game</p>
+                    <p class="lesson-desc">Rhythm-based music lesson</p>
                     <span class="launch-command">[LAUNCH: PARAPPA_RAPPER]</span>
                 </div>
 
@@ -1904,7 +1904,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/30.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Blade Ball</h3>
-                    <p class="lesson-desc">Fast-paced ball throwing game</p>
+                    <p class="lesson-desc">Fast-paced ball throwing lesson</p>
                     <span class="launch-command">[LAUNCH: BLADE_BALL]</span>
                 </div>
 
@@ -1913,7 +1913,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/31.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Ages of Conflict</h3>
-                    <p class="lesson-desc">Historical strategy warfare game</p>
+                    <p class="lesson-desc">Historical strategy warfare lesson</p>
                     <span class="launch-command">[LAUNCH: AGES_OF_CONFLICT]</span>
                 </div>
 
@@ -1931,7 +1931,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/33.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Bow Masters</h3>
-                    <p class="lesson-desc">Precision archery physics game</p>
+                    <p class="lesson-desc">Precision archery physics lesson</p>
                     <span class="launch-command">[LAUNCH: BOW_MASTERS]</span>
                 </div>
 
@@ -1967,7 +1967,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/37.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Idle Mining Empire</h3>
-                    <p class="lesson-desc">Addictive mining clicker game</p>
+                    <p class="lesson-desc">Addictive mining clicker lesson</p>
                     <span class="launch-command">[LAUNCH: IDLE_MINING_EMPIRE]</span>
                 </div>
 
@@ -2021,7 +2021,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/43.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Slender</h3>
-                    <p class="lesson-desc">Horror survival exploration game</p>
+                    <p class="lesson-desc">Horror survival exploration lesson</p>
                     <span class="launch-command">[LAUNCH: SLENDER]</span>
                 </div>
 
@@ -2075,7 +2075,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/49.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title"></h3>
-                    <p class="lesson-desc">Sequel horror escape game</p>
+                    <p class="lesson-desc">Sequel horror escape lesson</p>
                     <span class="launch-command">[LAUNCH: GRANNY_2]</span>
                 </div>
 
@@ -2084,7 +2084,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/50.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title"></h3>
-                    <p class="lesson-desc">Classic horror escape game</p>
+                    <p class="lesson-desc">Classic horror escape lesson</p>
                     <span class="launch-command">[LAUNCH: GRANNY]</span>
                 </div>
 
@@ -2111,7 +2111,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/54.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Candy Crush</h3>
-                    <p class="lesson-desc">Addictive match-3 puzzle game</p>
+                    <p class="lesson-desc">Addictive match-3 puzzle lesson</p>
                     <span class="launch-command">[LAUNCH: CANDY_CRUSH]</span>
                 </div>
 
@@ -2120,7 +2120,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/56.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">That's Not My Neighbor</h3>
-                    <p class="lesson-desc">Doorman identity verification game</p>
+                    <p class="lesson-desc">Doorman identity verification lesson</p>
                     <span class="launch-command">[LAUNCH: TNMN]</span>
                 </div>
 
@@ -2138,7 +2138,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/58.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">WebFishing</h3>
-                    <p class="lesson-desc">Relaxing fishing simulation game</p>
+                    <p class="lesson-desc">Relaxing fishing simulation lesson</p>
                     <span class="launch-command">[LAUNCH: WEBFISHING]</span>
                 </div>
 
@@ -2156,7 +2156,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/60.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Timberman</h3>
-                    <p class="lesson-desc">Fast-paced tree chopping game</p>
+                    <p class="lesson-desc">Fast-paced tree chopping lesson</p>
                     <span class="launch-command">[LAUNCH: TIMBERMAN]</span>
                 </div>
 
@@ -2192,7 +2192,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/64.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Super Smash Flash 2</h3>
-                    <p class="lesson-desc">Platform fighting game</p>
+                    <p class="lesson-desc">Platform fighting lesson</p>
                     <span class="launch-command">[LAUNCH: SMF2]</span>
                 </div>
 
@@ -2201,7 +2201,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/65.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Idle Breakout</h3>
-                    <p class="lesson-desc">Addictive brick breaking idle game</p>
+                    <p class="lesson-desc">Addictive brick breaking idle lesson</p>
                     <span class="launch-command">[LAUNCH: IDLE_BREAKOUT]</span>
                 </div>
 
@@ -2246,7 +2246,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/70.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Unicycle Hero</h3>
-                    <p class="lesson-desc">Balancing unicycle stunt game</p>
+                    <p class="lesson-desc">Balancing unicycle stunt lesson</p>
                     <span class="launch-command">[LAUNCH: UNICYCLE_HERO]</span>
                 </div>
 
@@ -2255,7 +2255,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/71.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Murder</h3>
-                    <p class="lesson-desc">Mystery deduction social game</p>
+                    <p class="lesson-desc">Mystery deduction social lesson</p>
                     <span class="launch-command">[LAUNCH: MURDER]</span>
                 </div>
 
@@ -2309,7 +2309,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/79.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">8Ball Pool</h3>
-                    <p class="lesson-desc">Realistic pool physics game</p>
+                    <p class="lesson-desc">Realistic pool physics lesson</p>
                     <span class="launch-command">[LAUNCH: 8BALL_POOL]</span>
                 </div>
 
@@ -2318,7 +2318,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/80.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">President Simulator</h3>
-                    <p class="lesson-desc">Political decision-making game</p>
+                    <p class="lesson-desc">Political decision-making lesson</p>
                     <span class="launch-command">[LAUNCH: PRESIDENT_SIMULATOR]</span>
                 </div>
 
@@ -2327,7 +2327,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/81.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Escape Road</h3>
-                    <p class="lesson-desc">Puzzle road navigation game</p>
+                    <p class="lesson-desc">Puzzle road navigation lesson</p>
                     <span class="launch-command">[LAUNCH: ESCAPE_ROAD]</span>
                 </div>
                 <div class="lesson-card"
@@ -2371,7 +2371,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/86.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">They're Coming</h3>
-                    <p class="lesson-desc">Horror survival defense game</p>
+                    <p class="lesson-desc">Horror survival defense lesson</p>
                     <span class="launch-command">[LAUNCH: THEYRE_COMING]</span>
                 </div>
 
@@ -2389,7 +2389,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/88.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Recoil</h3>
-                    <p class="lesson-desc">Physics-based shooting game</p>
+                    <p class="lesson-desc">Physics-based shooting lesson</p>
                     <span class="launch-command">[LAUNCH: RECOIL]</span>
                 </div>
 
@@ -2406,9 +2406,9 @@
                     onclick="openLesson('Amazing Tutoring Hub', 'https://noahsamazingtutoringhelp.github.io/Jimmie-Phuntso-Cuoco/')">
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/90.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
-                    <h3 class="lesson-title">Ultimate Car Driving Game</h3>
+                    <h3 class="lesson-title">Ultimate Car Driving lesson</h3>
                     <p class="lesson-desc">Realistic driving simulation</p>
-                    <span class="launch-command">[LAUNCH: ULTIMATE_DRIVING_GAME]</span>
+                    <span class="launch-command">[LAUNCH: ULTIMATE_DRIVING_lesson]</span>
                 </div>
 
                 <div class="lesson-card"
@@ -2416,7 +2416,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/91.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Crazy Cattle 3D</h3>
-                    <p class="lesson-desc">Funny cattle herding game</p>
+                    <p class="lesson-desc">Funny cattle herding lesson</p>
                     <span class="launch-command">[LAUNCH: CRAZY_CATTLE_3D]</span>
                 </div>
 
@@ -2425,7 +2425,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/92.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Run 3</h3>
-                    <p class="lesson-desc">Space tunnel running game</p>
+                    <p class="lesson-desc">Space tunnel running lesson</p>
                     <span class="launch-command">[LAUNCH: RUN_3]</span>
                 </div>
 
@@ -2443,7 +2443,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/94.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Apple Shooter</h3>
-                    <p class="lesson-desc">Precision apple shooting game</p>
+                    <p class="lesson-desc">Precision apple shooting lesson</p>
                     <span class="launch-command">[LAUNCH: APPLE_SHOOTER]</span>
                 </div>
 
@@ -2461,7 +2461,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/96.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Hextrix</h3>
-                    <p class="lesson-desc">Hexagon-based puzzle game</p>
+                    <p class="lesson-desc">Hexagon-based puzzle lesson</p>
                     <span class="launch-command">[LAUNCH: HEXTRIX]</span>
                 </div>
 
@@ -2479,7 +2479,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/98.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Rooftop Snipers 2</h3>
-                    <p class="lesson-desc">2D shooter duel game</p>
+                    <p class="lesson-desc">2D shooter duel lesson</p>
                     <span class="launch-command">[LAUNCH: ROOFTOP_SNIPERS_2]</span>
                 </div>
 
@@ -2488,7 +2488,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/99.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Color Switch</h3>
-                    <p class="lesson-desc">Color-matching obstacle game</p>
+                    <p class="lesson-desc">Color-matching obstacle lesson</p>
                     <span class="launch-command">[LAUNCH: COLOR_SWITCH]</span>
                 </div>
 
@@ -2497,7 +2497,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/100.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Hole.io</h3>
-                    <p class="lesson-desc">Black hole consuming game</p>
+                    <p class="lesson-desc">Black hole consuming lesson</p>
                     <span class="launch-command">[LAUNCH: HOLE.IO]</span>
                 </div>
 
@@ -2515,7 +2515,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/102.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Wrassling</h3>
-                    <p class="lesson-desc">Comical wrestling game</p>
+                    <p class="lesson-desc">Comical wrestling lesson</p>
                     <span class="launch-command">[LAUNCH: WRASSLING]</span>
                 </div>
 
@@ -2554,13 +2554,13 @@
                     <p class="lesson-desc">Endless running adventure</p>
                     <span class="launch-command">[LAUNCH: TEMPLE_RUN_2]</span>
                 </div>
-
+                
                 <div class="lesson-card"
                     onclick="openLesson('Amazing Tutoring Hub', 'https://dddavit.github.io/igra-fizika-boxa-2/')">
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/107.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Boxing Physics 2</h3>
-                    <p class="lesson-desc">Physics-based boxing game</p>
+                    <p class="lesson-desc">Physics-based boxing lesson</p>
                     <span class="launch-command">[LAUNCH: BOXING_PHYSICS_2]</span>
                 </div>
 
@@ -2578,7 +2578,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/110.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Fruit Merge</h3>
-                    <p class="lesson-desc">Merge fruit puzzle game</p>
+                    <p class="lesson-desc">Merge fruit puzzle lesson</p>
                     <span class="launch-command">[LAUNCH: FRUIT_MERGE]</span>
                 </div>
 
@@ -2587,7 +2587,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/111.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Wheelie Bike 2</h3>
-                    <p class="lesson-desc">Motorcycle stunt game</p>
+                    <p class="lesson-desc">Motorcycle stunt lesson</p>
                     <span class="launch-command">[LAUNCH: WHEELIE_BIKE_2]</span>
                 </div>
 
@@ -2605,7 +2605,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/113.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Bloxorz</h3>
-                    <p class="lesson-desc">Block rolling puzzle game</p>
+                    <p class="lesson-desc">Block rolling puzzle lesson</p>
                     <span class="launch-command">[LAUNCH: BLOXORZ]</span>
                 </div>
 
@@ -2622,9 +2622,9 @@
                     onclick="openLesson('Amazing Tutoring Hub', 'https://noahsamazingtutoringhelp.github.io/FinanceHomeworkHelp/')">
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/115.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
-                    <h3 class="lesson-title">Worlds Hardest Game</h3>
+                    <h3 class="lesson-title">Worlds Hardest lesson</h3>
                     <p class="lesson-desc">Extremely challenging puzzles</p>
-                    <span class="launch-command">[LAUNCH: WORLDS_HARDEST_GAME]</span>
+                    <span class="launch-command">[LAUNCH: WORLDS_HARDEST_lesson]</span>
                 </div>
 
                 <div class="lesson-card"
@@ -2650,7 +2650,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/118.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Stickman Hook</h3>
-                    <p class="lesson-desc">Swinging physics game</p>
+                    <p class="lesson-desc">Swinging physics lesson</p>
                     <span class="launch-command">[LAUNCH: STICKMAN_HOOK]</span>
                 </div>
 
@@ -2668,7 +2668,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/120.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Idle Tree City</h3>
-                    <p class="lesson-desc">Tree-growing idle game</p>
+                    <p class="lesson-desc">Tree-growing idle lesson</p>
                     <span class="launch-command">[LAUNCH: IDLE_TREE_CITY]</span>
                 </div>
 
@@ -2686,7 +2686,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/123.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Stacktris</h3>
-                    <p class="lesson-desc">Tetris-inspired stacking game</p>
+                    <p class="lesson-desc">Tetris-inspired stacking lesson</p>
                     <span class="launch-command">[LAUNCH: STACKTRIS]</span>
                 </div>
 
@@ -2722,7 +2722,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/127.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Blocky Snakes</h3>
-                    <p class="lesson-desc">Block-based snake game</p>
+                    <p class="lesson-desc">Block-based snake lesson</p>
                     <span class="launch-command">[LAUNCH: BLOCKY_SNAKES]</span>
                 </div>
 
@@ -2749,7 +2749,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/130.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Burrito Bison</h3>
-                    <p class="lesson-desc">Launching wrestling game</p>
+                    <p class="lesson-desc">Launching wrestling lesson</p>
                     <span class="launch-command">[LAUNCH: BURRITO_BISON]</span>
                 </div>
 
@@ -2767,7 +2767,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/133.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Pou</h3>
-                    <p class="lesson-desc">Virtual pet care game</p>
+                    <p class="lesson-desc">Virtual pet care lesson</p>
                     <span class="launch-command">[LAUNCH: POU]</span>
                 </div>
 
@@ -2794,7 +2794,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/136.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Snow Rider 3D</h3>
-                    <p class="lesson-desc">Snowboarding trick game</p>
+                    <p class="lesson-desc">Snowboarding trick lesson</p>
                     <span class="launch-command">[LAUNCH: SNOW_RIDER_3D]</span>
                 </div>
 
@@ -2812,7 +2812,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/138.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Paper.io 2</h3>
-                    <p class="lesson-desc">Territory conquest game</p>
+                    <p class="lesson-desc">Territory conquest lesson</p>
                     <span class="launch-command">[LAUNCH: PAPER.IO_2]</span>
                 </div>
 
@@ -2821,7 +2821,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/139.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Poly Track</h3>
-                    <p class="lesson-desc">Geometric racing game</p>
+                    <p class="lesson-desc">Geometric racing lesson</p>
                     <span class="launch-command">[LAUNCH: POLY_TRACK]</span>
                 </div>
                 <div class="lesson-card"
@@ -2856,7 +2856,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/144.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Thorns and Balloons</h3>
-                    <p class="lesson-desc">Balloon popping game</p>
+                    <p class="lesson-desc">Balloon popping lesson</p>
                     <span class="launch-command">[LAUNCH: THRONS_AND_BALLOONS]</span>
                 </div>
 
@@ -2909,7 +2909,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/150.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Drift Boss</h3>
-                    <p class="lesson-desc">Precision drifting game</p>
+                    <p class="lesson-desc">Precision drifting lesson</p>
                     <span class="launch-command">[LAUNCH: DRIFT_BOSS]</span>
                 </div>
 
@@ -2981,7 +2981,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/158.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Retro Bowl</h3>
-                    <p class="lesson-desc">Football management game</p>
+                    <p class="lesson-desc">Football management lesson</p>
                     <span class="launch-command">[LAUNCH: RETRO_BOWL]</span>
                 </div>
 
@@ -3003,7 +3003,7 @@
                 </div>
 
                 <div class="lesson-card"
-                    onclick="openLesson('Amazing Tutoring Hub', 'https://spew45.github.io/game-assets/btd4/')">
+                    onclick="openLesson('Amazing Tutoring Hub', 'https://spew45.github.io/lesson-assets/btd4/')">
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/161.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Bloons TD 4</h3>
@@ -3015,9 +3015,9 @@
                     onclick="openLesson('Amazing Tutoring Hub', 'https://noahsamazingtutoringhelp.github.io/AlgebraTutoring/')">
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/162.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
-                    <h3 class="lesson-title">Sand Game<h /3>
+                    <h3 class="lesson-title">Sand lesson<h /3>
                             <p class="lesson-desc">Physics sand simulation</p>
-                            <span class="launch-command">[LAUNCH: SAND_GAME]</span>
+                            <span class="launch-command">[LAUNCH: SAND_lesson]</span>
                 </div>
 
                 <div class="lesson-card"
@@ -3025,7 +3025,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/163.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Stack Bump</h3>
-                    <p class="lesson-desc">Stacking puzzle game</p>
+                    <p class="lesson-desc">Stacking puzzle lesson</p>
                     <span class="launch-command">[LAUNCH: STACK_BUMP]</span>
                 </div>
 
@@ -3079,7 +3079,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/169.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Tiny Fishing</h3>
-                    <p class="lesson-desc">Relaxing fishing game</p>
+                    <p class="lesson-desc">Relaxing fishing lesson</p>
                     <span class="launch-command">[LAUNCH: TINY_FISHING]</span>
                 </div>
 
@@ -3088,7 +3088,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/171.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Dodge Ball</h3>
-                    <p class="lesson-desc">Dodgeball game I made (pretty fun)</p>
+                    <p class="lesson-desc">Dodgeball lesson I made (pretty fun)</p>
                     <span class="launch-command">[LAUNCH: DODGE_BALL]</span>
                 </div>
 
@@ -3096,7 +3096,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/172.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Age of War 2</h3>
-                    <p class="lesson-desc">Evolution strategy game</p>
+                    <p class="lesson-desc">Evolution strategy lesson</p>
                     <span class="launch-command">[LAUNCH: AGE_OF_WAR_2]</span>
                 </div>
 
@@ -3114,7 +3114,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/175.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Slope</h3>
-                    <p class="lesson-desc">3D ball rolling game</p>
+                    <p class="lesson-desc">3D ball rolling lesson</p>
                     <span class="launch-command">[LAUNCH: SLOPE]</span>
                 </div>
 
@@ -3132,7 +3132,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/177.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Cookie Clicker</h3>
-                    <p class="lesson-desc">Addictive clicking game</p>
+                    <p class="lesson-desc">Addictive clicking lesson</p>
                     <span class="launch-command">[LAUNCH: COOKIE_CLICKER]</span>
                 </div>
 
@@ -3141,7 +3141,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/178.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Bitlife</h3>
-                    <p class="lesson-desc">Life simulation game</p>
+                    <p class="lesson-desc">Life simulation lesson</p>
                     <span class="launch-command">[LAUNCH: BITLIFE]</span>
                 </div>
 
@@ -3158,7 +3158,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/180.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Cut The Rope</h3>
-                    <p class="lesson-desc">Physics puzzle game</p>
+                    <p class="lesson-desc">Physics puzzle lesson</p>
                     <span class="launch-command">[LAUNCH: CUT_THE_ROPE]</span>
                 </div>
 
@@ -3167,7 +3167,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/181.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Sort The Court</h3>
-                    <p class="lesson-desc">Kingdom management game</p>
+                    <p class="lesson-desc">Kingdom management lesson</p>
                     <span class="launch-command">[LAUNCH: SORT_THE_COURT]</span>
                 </div>
 
@@ -3176,7 +3176,7 @@
                     <img src="https://cdn.jsdelivr.net/gh/amazingtutoringhelp/Calculus-Tutor-Assets@master/images/182.jpg"
                         alt="Amazing Tutoring Hub" class="lesson-image">
                     <h3 class="lesson-title">Tomb of the Mask</h3>
-                    <p class="lesson-desc">Arcade maze game</p>
+                    <p class="lesson-desc">Arcade maze lesson</p>
                     <span class="launch-command">[LAUNCH: TOMB_OF_THE_MASK]</span>
                 </div>
 
@@ -3221,10 +3221,10 @@
     <script>
         var d = document, w = "https://tally.so/widgets/embed.js", v = function () { "undefined" != typeof Tally ? Tally.loadEmbeds() : d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function (e) { e.src = e.dataset.tallySrc })) }; if ("undefined" != typeof Tally) v(); else if (d.querySelector('script[src="' + w + '"]') == null) { var s = d.createElement("script"); s.src = w, s.onload = v, s.onerror = v, d.body.appendChild(s); }
     </script>
-    <div class="game-page" id="gamePage">
-        <div class="game-header">
-            <div class="game-title" id="gameTitle">Game Title</div>
-            <div class="game-controls">
+    <div class="lesson-page" id="lessonPage">
+        <div class="lesson-header">
+            <div class="lesson-title" id="lessonTitle">lesson Title</div>
+            <div class="lesson-controls">
                 <button class="btn" onclick="toggleFullscreen()">
                     <i class="fas fa-expand"></i> Fullscreen
                 </button>
@@ -3233,8 +3233,8 @@
                 </button>
             </div>
         </div>
-        <div class="game-container">
-            <iframe id="gameFrame" class="game-frame" frameborder="0" src="" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-downloads"></iframe>
+        <div class="lesson-container">
+            <iframe id="lessonFrame" class="lesson-frame" frameborder="0" src="" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-downloads"></iframe>
         </div>
     </div>
     </div>
