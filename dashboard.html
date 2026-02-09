@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', monospace;
+        }
+
+        body {
+            background: linear-gradient(135deg, #060714 0%, #0a0f2c 100%);
+            color: #EAFCFF;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 2px solid #33D7FF;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #33D7FF;
+            text-shadow: 0 0 20px rgba(51, 215, 255, 0.5);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #89C7D1;
+            font-size: 1.1em;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: rgba(51, 215, 255, 0.1);
+            border: 1px solid #33D7FF;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(51, 215, 255, 0.3);
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: #89C7D1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .stat-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #33D7FF;
+            text-shadow: 0 0 10px rgba(51, 215, 255, 0.5);
+        }
+
+        .stat-change {
+            font-size: 0.85em;
+            margin-top: 5px;
+            color: #9B59FF;
+        }
+
+        .section {
+            background: rgba(51, 215, 255, 0.05);
+            border: 1px solid rgba(51, 215, 255, 0.3);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            color: #33D7FF;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(51, 215, 255, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .table thead {
+            background: rgba(51, 215, 255, 0.2);
+        }
+
+        .table th {
+            text-align: left;
+            padding: 12px;
+            color: #33D7FF;
+            font-weight: bold;
+            border-bottom: 2px solid #33D7FF;
+        }
+
+        .table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid rgba(51, 215, 255, 0.2);
+            color: #EAFCFF;
+        }
+
+        .table tr:hover {
+            background: rgba(51, 215, 255, 0.1);
+        }
+
+        .event-type {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 0.85em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .event-pageview { background: #33D7FF; color: #060714; }
+        .event-click { background: #9B59FF; color: #EAFCFF; }
+        .event-scroll { background: #00ff88; color: #060714; }
+        .event-heartbeat { background: #ffa500; color: #060714; }
+        .event-session_end { background: #ff4444; color: #EAFCFF; }
+
+        .refresh-btn {
+            background: #33D7FF;
+            color: #060714;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(51, 215, 255, 0.3);
+            margin: 10px 0;
+        }
+
+        .refresh-btn:hover {
+            background: #9B59FF;
+            color: #EAFCFF;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(155, 89, 255, 0.4);
+        }
+
+        .refresh-info {
+            display: inline-block;
+            margin-left: 15px;
+            color: #89C7D1;
+            font-size: 0.9em;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #33D7FF;
+            font-size: 1.2em;
+        }
+
+        .error {
+            background: rgba(255, 68, 68, 0.2);
+            border: 1px solid #ff4444;
+            color: #ff6b6b;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .chart-container {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .bar-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .bar-label {
+            min-width: 80px;
+            color: #89C7D1;
+            font-size: 0.9em;
+        }
+
+        .bar-container {
+            flex: 1;
+            height: 30px;
+            background: rgba(51, 215, 255, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #33D7FF, #9B59FF);
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            color: white;
+            font-weight: bold;
+            font-size: 0.85em;
+        }
+
+        .timestamp {
+            color: #89C7D1;
+            font-size: 0.85em;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .live-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: #00ff88;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Analytics Dashboard</h1>
+            <p class="subtitle">Real-time Website Statistics</p>
+        </header>
+
+        <div class="controls">
+            <div>
+                <button class="refresh-btn" onclick="loadStats()">🔄 Refresh Data</button>
+                <span class="refresh-info">
+                    <span class="live-indicator"></span>
+                    Auto-refresh: <span id="countdown">30</span>s
+                </span>
+            </div>
+            <div class="refresh-info">
+                Last updated: <span id="lastUpdate">Never</span>
+            </div>
+        </div>
+
+        <div id="error-container"></div>
+        
+        <div id="loading" class="loading">Loading statistics...</div>
+        
+        <div id="dashboard" style="display: none;">
+            <!-- Overview Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Total Events</div>
+                    <div class="stat-value" id="totalEvents">0</div>
+                    <div class="stat-change">Last 24h: <span id="events24h">0</span></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Page Views</div>
+                    <div class="stat-value" id="totalPageViews">0</div>
+                    <div class="stat-change">Last 24h: <span id="pageViews24h">0</span></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Clicks</div>
+                    <div class="stat-value" id="totalClicks">0</div>
+                    <div class="stat-change">Last 24h: <span id="clicks24h">0</span></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Sessions</div>
+                    <div class="stat-value" id="totalSessions">0</div>
+                    <div class="stat-change">Last 24h: <span id="sessions24h">0</span></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Users</div>
+                    <div class="stat-value" id="totalUsers">0</div>
+                    <div class="stat-change">Last 24h: <span id="users24h">0</span></div>
+                </div>
+            </div>
+
+            <!-- Top Pages -->
+            <div class="section">
+                <h2 class="section-title">📄 Top Pages</h2>
+                <div class="chart-container">
+                    <div class="bar-chart" id="topPagesChart"></div>
+                </div>
+            </div>
+
+            <!-- Scroll Depths -->
+            <div class="section">
+                <h2 class="section-title">📜 Scroll Depth Analysis</h2>
+                <div class="chart-container">
+                    <div class="bar-chart" id="scrollDepthChart"></div>
+                </div>
+            </div>
+
+            <!-- Recent Events -->
+            <div class="section">
+                <h2 class="section-title">🔔 Recent Events</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Type</th>
+                            <th>User</th>
+                            <th>Page</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recentEvents"></tbody>
+                </table>
+            </div>
+
+            <!-- Active Sessions -->
+            <div class="section">
+                <h2 class="section-title">👥 Recent Sessions</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Session ID</th>
+                            <th>User ID</th>
+                            <th>Page Views</th>
+                            <th>Clicks</th>
+                            <th>Events</th>
+                            <th>Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sessionsTable"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:3000/api/stats';
+        let countdownTimer;
+        let countdownValue = 30;
+
+        async function loadStats() {
+            try {
+                const response = await fetch(API_URL);
+                if (!response.ok) throw new Error('Failed to fetch stats');
+                
+                const data = await response.json();
+                displayStats(data);
+                
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+                document.getElementById('error-container').innerHTML = '';
+                document.getElementById('lastUpdate').textContent = new Date().toLocaleTimeString();
+                
+                resetCountdown();
+            } catch (error) {
+                console.error('Error loading stats:', error);
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('error-container').innerHTML = 
+                    `<div class="error">⚠️ Error loading statistics: ${error.message}. Make sure the analytics server is running on port 3000.</div>`;
+            }
+        }
+
+        function displayStats(data) {
+            // Overview stats
+            document.getElementById('totalEvents').textContent = data.overview.totalEvents.toLocaleString();
+            document.getElementById('totalPageViews').textContent = data.overview.totalPageViews.toLocaleString();
+            document.getElementById('totalClicks').textContent = data.overview.totalClicks.toLocaleString();
+            document.getElementById('totalSessions').textContent = data.overview.totalSessions.toLocaleString();
+            document.getElementById('totalUsers').textContent = data.overview.totalUsers.toLocaleString();
+
+            // 24h stats
+            document.getElementById('events24h').textContent = data.last24h.events.toLocaleString();
+            document.getElementById('pageViews24h').textContent = data.last24h.pageViews.toLocaleString();
+            document.getElementById('clicks24h').textContent = data.last24h.clicks.toLocaleString();
+            document.getElementById('sessions24h').textContent = data.last24h.sessions.toLocaleString();
+            document.getElementById('users24h').textContent = data.last24h.users.toLocaleString();
+
+            // Top pages chart
+            displayTopPages(data.topPages);
+
+            // Scroll depth chart
+            displayScrollDepths(data.scrollDepths);
+
+            // Recent events
+            displayRecentEvents(data.recentEvents);
+
+            // Sessions
+            displaySessions(data.sessions);
+        }
+
+        function displayTopPages(topPages) {
+            const container = document.getElementById('topPagesChart');
+            if (!topPages || topPages.length === 0) {
+                container.innerHTML = '<p style="color: #89C7D1;">No page views yet</p>';
+                return;
+            }
+
+            const maxCount = Math.max(...topPages.map(p => p.count));
+            container.innerHTML = topPages.map(page => `
+                <div class="bar-item">
+                    <div class="bar-label">${page.count} views</div>
+                    <div class="bar-container">
+                        <div class="bar-fill" style="width: ${(page.count / maxCount) * 100}%">
+                            ${page.page}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function displayScrollDepths(scrollDepths) {
+            const container = document.getElementById('scrollDepthChart');
+            if (!scrollDepths || scrollDepths.length === 0) {
+                container.innerHTML = '<p style="color: #89C7D1;">No scroll data yet</p>';
+                return;
+            }
+
+            const maxCount = Math.max(...scrollDepths.map(s => s.count));
+            container.innerHTML = scrollDepths.map(depth => `
+                <div class="bar-item">
+                    <div class="bar-label">${depth.depth}%</div>
+                    <div class="bar-container">
+                        <div class="bar-fill" style="width: ${(depth.count / maxCount) * 100}%">
+                            ${depth.count} users
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function displayRecentEvents(events) {
+            const tbody = document.getElementById('recentEvents');
+            if (!events || events.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #89C7D1;">No events yet</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = events.slice(0, 20).map(event => {
+                const time = new Date(event.timestamp).toLocaleTimeString();
+                const userId = event.userId?.substring(0, 8);
+                const details = getEventDetails(event);
+                
+                return `
+                    <tr>
+                        <td class="timestamp">${time}</td>
+                        <td><span class="event-type event-${event.type}">${event.type}</span></td>
+                        <td>${userId}</td>
+                        <td>${event.path || '/'}</td>
+                        <td>${details}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function getEventDetails(event) {
+            switch (event.type) {
+                case 'pageview':
+                    return event.data?.title || 'Page view';
+                case 'click':
+                    return `${event.data?.element || 'element'}: ${(event.data?.text || '').substring(0, 30)}...`;
+                case 'scroll':
+                    return `Depth: ${event.data?.depth}%`;
+                case 'heartbeat':
+                    return `Duration: ${Math.round(event.data?.duration / 1000)}s`;
+                case 'session_end':
+                    return `Duration: ${Math.round(event.data?.duration / 1000)}s, Events: ${event.data?.eventsCount}`;
+                default:
+                    return JSON.stringify(event.data || {}).substring(0, 50);
+            }
+        }
+
+        function displaySessions(sessions) {
+            const tbody = document.getElementById('sessionsTable');
+            if (!sessions || sessions.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #89C7D1;">No sessions yet</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = sessions.map(session => {
+                const sessionId = session.sessionId?.substring(0, 8);
+                const userId = session.userId?.substring(0, 8);
+                const duration = Math.round((session.lastSeen - session.firstSeen) / 1000);
+                
+                return `
+                    <tr>
+                        <td>${sessionId}</td>
+                        <td>${userId}</td>
+                        <td>${session.pageViews}</td>
+                        <td>${session.clicks}</td>
+                        <td>${session.events.length}</td>
+                        <td>${duration}s</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function resetCountdown() {
+            countdownValue = 30;
+            clearInterval(countdownTimer);
+            countdownTimer = setInterval(() => {
+                countdownValue--;
+                document.getElementById('countdown').textContent = countdownValue;
+                if (countdownValue <= 0) {
+                    loadStats();
+                }
+            }, 1000);
+        }
+
+        // Load stats on page load
+        loadStats();
+    </script>
+</body>
+</html>
