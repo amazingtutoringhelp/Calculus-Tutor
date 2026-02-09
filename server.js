@@ -111,6 +111,18 @@ function processEvents(events) {
     if (analyticsData.events.length > 10000) {
         analyticsData.events = analyticsData.events.slice(-10000);
     }
+    if (analyticsData.pageViews.length > 10000) {
+        analyticsData.pageViews = analyticsData.pageViews.slice(-10000);
+    }
+    if (analyticsData.clicks.length > 10000) {
+        analyticsData.clicks = analyticsData.clicks.slice(-10000);
+    }
+    if (analyticsData.scrolls.length > 10000) {
+        analyticsData.scrolls = analyticsData.scrolls.slice(-10000);
+    }
+    if (analyticsData.heartbeats.length > 10000) {
+        analyticsData.heartbeats = analyticsData.heartbeats.slice(-10000);
+    }
 }
 
 /**

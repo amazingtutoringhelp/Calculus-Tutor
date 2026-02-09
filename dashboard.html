@@ -372,7 +372,7 @@
     </div>
 
     <script>
-        const API_URL = 'http://localhost:3000/api/stats';
+        const API_URL = '/api/stats';
         let countdownTimer;
         let countdownValue = 30;
 
@@ -495,7 +495,8 @@
                 case 'pageview':
                     return event.data?.title || 'Page view';
                 case 'click':
-                    return `${event.data?.element || 'element'}: ${(event.data?.text || '').substring(0, 30)}...`;
+                    const text = (event.data?.text || '').substring(0, 30);
+                    return `${event.data?.element || 'element'}: ${text}${text.length >= 30 ? '...' : ''}`;
                 case 'scroll':
                     return `Depth: ${event.data?.depth}%`;
                 case 'heartbeat':
@@ -503,7 +504,8 @@
                 case 'session_end':
                     return `Duration: ${Math.round(event.data?.duration / 1000)}s, Events: ${event.data?.eventsCount}`;
                 default:
-                    return JSON.stringify(event.data || {}).substring(0, 50);
+                    const jsonStr = JSON.stringify(event.data || {});
+                    return jsonStr.length > 50 ? jsonStr.substring(0, 47) + '...' : jsonStr;
             }
         }
 

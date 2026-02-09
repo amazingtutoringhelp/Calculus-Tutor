@@ -8,7 +8,7 @@
 
     // Configuration
     const config = {
-        endpoint: 'http://localhost:3000/api/track',
+        endpoint: '/api/track',
         sessionTimeout: 30 * 60 * 1000, // 30 minutes
         batchSize: 10,
         batchTimeout: 5000 // 5 seconds
