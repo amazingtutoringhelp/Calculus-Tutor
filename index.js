@@ -33,24 +33,28 @@ window.addEventListener('resize', function () {
 });
 
 function openLesson(title, url) {
+    const cacheBustUrl = url + (url.includes('?') ? '&' : '?') + 'v=' + Date.now();
     document.getElementById('lessonTitle').textContent = title;
-    document.getElementById('lessonFrame').src = url;
+    document.getElementById('lessonFrame').src = cacheBustUrl;
     document.getElementById('lessonPage').classList.add('active');
     document.getElementById('main-container').classList.add('slide-down');
 }
 
 function openLessonFromCDN(title, url) {
     document.getElementById('lessonTitle').textContent = title;
-        fetch(url)
-            .then(response => response.text())
-            .then(html => {
-                const iframe = document.getElementById('lessonFrame');
-                iframe.srcdoc = html;
-            })
-            .catch(error => console.error('Error loading content:', error));
+    // Add cache-busting parameter
+    const cacheBustUrl = url + (url.includes('?') ? '&' : '?') + 'v=' + Date.now();
+    fetch(cacheBustUrl)
+        .then(response => response.text())
+        .then(html => {
+            const iframe = document.getElementById('lessonFrame');
+            iframe.srcdoc = html;
+        })
+        .catch(error => console.error('Error loading content:', error));
     document.getElementById('lessonPage').classList.add('active');
     document.getElementById('main-container').classList.add('slide-down');
 }
+
 function closeLesson() {
     document.getElementById('main-container').classList.remove('slide-down');
     setTimeout(function () {
